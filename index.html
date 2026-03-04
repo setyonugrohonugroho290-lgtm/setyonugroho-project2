@@ -1,0 +1,1212 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kafe Saya - Nikmatnya Masakan Rumahan</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="bootstrap-5.0.0-dist/css/bootstrap.min.css" />
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Custom CSS -->
+    <style>
+      * {
+        font-family: 'Poppins', sans-serif;
+      }
+      
+      .main-color {
+        background: linear-gradient(135deg, #2c3e50, #3498db) !important;
+      }
+      
+      .banner {
+        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                    url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920') center/cover no-repeat;
+        height: 500px;
+      }
+      
+      .hovered-card {
+        transition: all 0.3s ease;
+      }
+      
+      .hovered-card:hover {
+        transform: translateY(-10px);
+      }
+      
+      .pelayanan {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+      }
+      
+      .icon-circle {
+        width: 80px;
+        height: 80px;
+        transition: all 0.3s ease;
+        background: rgba(255,255,255,0.1);
+      }
+      
+      .icon-circle:hover {
+        background: rgba(255,255,255,0.3);
+        transform: scale(1.1);
+      }
+      
+      .menu-card {
+        transition: all 0.3s ease;
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      
+      .menu-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      }
+      
+      .menu-card-img {
+        width: 100%;
+        height: 210px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      
+      .menu-card-img:hover {
+        transform: scale(1.1);
+      }
+      
+      .testimony {
+        background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+      }
+      
+      .testimony-card {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 20px;
+        padding: 30px;
+        color: white;
+        transition: all 0.3s ease;
+        height: 100%;
+      }
+      
+      .testimony-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255,255,255,0.2);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      }
+      
+      .quote-icon {
+        font-size: 4rem;
+        font-family: serif;
+        line-height: 1;
+        margin-bottom: 10px;
+        color: rgba(255,255,255,0.5);
+      }
+      
+      .testimony-card h5 {
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      
+      .testimony-card .author {
+        font-style: italic;
+        color: rgba(255,255,255,0.8);
+        margin-bottom: 10px;
+      }
+      
+      .testimony-card .stars {
+        color: #ffd700;
+        margin-bottom: 15px;
+      }
+      
+      .testimony-card p {
+        color: rgba(255,255,255,0.9);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+      }
+      
+      .footer {
+        background: linear-gradient(135deg, #2c3e50, #3498db);
+      }
+      
+      .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 50%;
+        color: white;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+      
+      .social-icon:hover {
+        background: #ffc107;
+        color: #2c3e50;
+        transform: translateY(-3px);
+      }
+      
+      .btn-warning {
+        background: #ffc107;
+        border: none;
+        transition: all 0.3s ease;
+      }
+      
+      .btn-warning:hover {
+        background: #ffca2c;
+        transform: scale(1.05);
+      }
+      
+      .card {
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+      
+      .card:hover {
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      }
+      
+      .badge-promo {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #ffc107;
+        color: #2c3e50;
+        padding: 5px 15px;
+        border-radius: 25px;
+        font-weight: 600;
+        z-index: 2;
+      }
+      
+      .modal-content {
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      
+      .modal-header {
+        background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+        color: white;
+        border: none;
+      }
+      
+      .modal-header .btn-close {
+        filter: brightness(0) invert(1);
+      }
+      
+      .modal-body {
+        padding: 20px;
+      }
+      
+      .modal-body img {
+        border-radius: 10px;
+        max-height: 80vh;
+        object-fit: contain;
+      }
+
+      /* Page transition */
+      .page {
+        display: none;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Cart styles */
+      .cart-item {
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
+      }
+
+      .cart-item:hover {
+        background: #f8f9fa;
+        border-left-color: #ffc107;
+        transform: translateX(5px);
+      }
+
+      .cart-quantity {
+        width: 80px;
+        text-align: center;
+      }
+
+      .cart-total {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #ff6b6b;
+      }
+
+      /* Pagination */
+      .pagination .page-link {
+        color: #ffc107;
+        border: none;
+        margin: 0 3px;
+        border-radius: 8px;
+      }
+
+      .pagination .page-link:hover {
+        background: #ffc107;
+        color: white;
+      }
+
+      .pagination .active .page-link {
+        background: #ffc107;
+        color: white;
+      }
+    </style>
+  </head>
+  
+  <body>
+        <nav class="navbar navbar-expand-lg navbar-dark main-color sticky-top">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <a class="navbar-brand me-auto" href="#" onclick="showPage('home'); return false;">Kafe Saya</a>
+          <ul class="navbar-nav">
+            <li class="nav-item me-5">
+              <a class="nav-link" href="#" onclick="showPage('home'); return false;" id="nav-home">Home</a>
+            </li>
+            <li class="nav-item me-5">
+              <a class="nav-link" href="#" onclick="showPage('produk'); return false;" id="nav-produk">Produk</a>
+            </li>
+            <li class="nav-item me-5">
+              <a class="nav-link" href="#" onclick="showPage('promo'); return false;" id="nav-promo">Promo</a>
+            </li>
+            <li class="nav-item me-5">
+              <a class="nav-link" href="#" onclick="showPage('keranjang'); return false;" id="nav-keranjang">
+                <i class="bi bi-cart"></i> Keranjang <span id="cart-count" class="badge bg-warning text-dark">0</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <div id="home-page" class="page active">
+ 
+      <div class="container-fluid banner align-items-center d-flex justify-content-center">
+        <div class="container text-center">
+          <h1 class="text-light display-5 mb-3">Selamat Datang di Kafe Kami</h1>
+          <h2 class="text-light display-6 mb-4">Lagi Mau Makan Apa?</h2>
+          <div class="col-md-8 offset-md-2">
+            <div class="input-group input-group-lg mt-5">
+              <select class="form-select" id="foodCategory">
+                <option selected>Pilih Makanan</option>
+                <option value="western">Western Food</option>
+                <option value="eastern">Eastern Food</option>
+                <option value="indonesian">Indonesian Food</option>
+              </select>
+              <div class="input-group-append">
+                <button class="btn btn-lg btn-warning text-light" type="button" onclick="searchFood()">Telusuri</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid py-5">
+        <div class="container">
+          <h2 class="text-center mb-5">Promo Spesial</h2>
+
+          <div class="row mt-5 justify-content-center" id="promoHomeList">
+          
+          </div>
+
+          <div class="text-center mt-4">
+            <button class="btn btn-warning btn-lg text-light" onclick="showPage('promo')">Lihat Semua Promo</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid py-5 pelayanan">
+        <div class="container">
+          <h2 class="text-center text-light mb-5">Kami Melayani</h2>
+
+          <div class="row justify-content-center text-center text-light">
+       
+            <div class="col-sm-6 col-lg-3 mb-4">
+              <div class="d-flex justify-content-center mb-3">
+                <div class="icon-circle rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="bi bi-bicycle fs-3 text-light"></i>
+                </div>
+              </div>
+              <h5 class="text-light">Delivery</h5>
+              <p class="text-light">Pesan antar cepat sampai ke rumah Anda.</p>
+            </div>
+
+          
+            <div class="col-sm-6 col-lg-3 mb-4">
+              <div class="d-flex justify-content-center mb-3">
+                <div class="icon-circle rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="bi bi-basket fs-3 text-light"></i>
+                </div>
+              </div>
+              <h5 class="text-light">Take Away</h5>
+              <p class="text-light">Ambil sendiri lebih praktis dan hemat.</p>
+            </div>
+
+            <!-- Dine In -->
+            <div class="col-sm-6 col-lg-3 mb-4">
+              <div class="d-flex justify-content-center mb-3">
+                <div class="icon-circle rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="bi bi-cup-straw fs-3 text-light"></i>
+                </div>
+              </div>
+              <h5 class="text-light">Dine In</h5>
+              <p class="text-light">Makan di tempat dengan suasana nyaman.</p>
+            </div>
+
+            <!-- Catering -->
+            <div class="col-sm-6 col-lg-3 mb-4">
+              <div class="d-flex justify-content-center mb-3">
+                <div class="icon-circle rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="bi bi-people fs-3 text-light"></i>
+                </div>
+              </div>
+              <h5 class="text-light">Catering</h5>
+              <p class="text-light">Layanan catering untuk acara Anda.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MENU FAVORIT -->
+      <div class="container-fluid py-5 menu-favorit">
+        <div class="container">
+          <h2 class="text-center mb-5">Paling Banyak Dibeli</h2>
+
+          <div class="row justify-content-center" id="favoriteMenuList">
+            <!-- Favorite menu akan di-load via JavaScript -->
+          </div>
+
+          <div class="text-center mt-3">
+            <button class="btn btn-warning btn-lg text-light px-4" onclick="showPage('produk')">Lihat Semua Menu</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TESTIMONIALS -->
+      <div class="container-fluid py-5 testimony">
+        <div class="container">
+          <h2 class="text-center text-light mb-2">Apa Kata Customer</h2>
+          <p class="text-center mb-5" style="color: rgba(255,255,255,0.8);">Kepuasan pelanggan adalah prioritas kami</p>
+
+          <div class="row g-4" id="testimonialList">
+            <!-- Testimonials akan di-load via JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUK PAGE -->
+    <div id="produk-page" class="page">
+      <div class="container-fluid py-5">
+        <div class="container">
+          <h2 class="text-center mb-5">Semua Menu (25 Menu)</h2>
+          
+          <!-- Filter Kategori -->
+          <div class="row mb-4">
+            <div class="col-md-6 offset-md-3">
+              <select class="form-select" id="productCategory" onchange="filterProducts()">
+                <option value="all">Semua Kategori</option>
+                <option value="makanan">Makanan</option>
+                <option value="minuman">Minuman</option>
+                <option value="dessert">Dessert</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Search Bar -->
+          <div class="row mb-4">
+            <div class="col-md-6 offset-md-3">
+              <div class="input-group">
+                <input type="text" class="form-control" id="searchProduct" placeholder="Cari menu..." onkeyup="searchProducts()">
+                <button class="btn btn-warning text-light" type="button" onclick="searchProducts()">
+                  <i class="bi bi-search"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-4" id="productList">
+            <!-- Produk akan di-load via JavaScript -->
+          </div>
+
+          <!-- Pagination -->
+          <div class="d-flex justify-content-center mt-5">
+            <nav aria-label="Page navigation">
+              <ul class="pagination" id="productPagination">
+                <!-- Pagination akan di-load via JavaScript -->
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROMO PAGE -->
+    <div id="promo-page" class="page">
+      <div class="container-fluid py-5">
+        <div class="container">
+          <h2 class="text-center mb-5">Semua Promo</h2>
+          
+          <div class="row g-4" id="promoList">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="keranjang-page" class="page">
+      <div class="container-fluid py-5">
+        <div class="container">
+          <h2 class="text-center mb-5">Keranjang Belanja</h2>
+          
+          <div class="row">
+            <div class="col-lg-8">
+              <div id="cartItems" class="mb-4">
+                <!-- Cart items akan di-load via JavaScript -->
+              </div>
+            </div>
+            
+            <div class="col-lg-4">
+              <div class="card shadow-sm sticky-top" style="top: 100px;">
+                <div class="card-body">
+                  <h5 class="card-title fw-bold mb-4">Ringkasan Belanja</h5>
+                  
+                  <div class="d-flex justify-content-between mb-3">
+                    <span>Total Harga:</span>
+                    <span class="fw-bold" id="cartTotal">Rp 0</span>
+                  </div>
+                  
+                  <div class="d-flex justify-content-between mb-3">
+                    <span>PPN (11%):</span>
+                    <span class="fw-bold" id="cartTax">Rp 0</span>
+                  </div>
+                  
+                  <hr>
+                  
+                  <div class="d-flex justify-content-between mb-4">
+                    <span class="h5">Total Bayar:</span>
+                    <span class="h5 fw-bold text-danger" id="cartFinalTotal">Rp 0</span>
+                  </div>
+                  
+                  <button class="btn btn-warning text-light w-100 py-3 mb-2" onclick="checkout()">
+                    <i class="bi bi-check-circle"></i> Checkout
+                  </button>
+                  
+                  <button class="btn btn-outline-secondary w-100" onclick="clearCart()">
+                    <i class="bi bi-trash"></i> Kosongkan Keranjang
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-2">Reservasi</h2>
+        <p class="text-center text-muted mb-5">Jangan sampai kehabisan tempat. Reservasi sekarang !!!</p>
+
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label">Nama</label>
+              <input type="text" class="form-control" id="reservasiNama" placeholder="Masukkan nama lengkap">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">No. Kontak</label>
+              <input type="text" class="form-control" id="reservasiKontak" placeholder="Masukkan nomor telepon">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Jumlah Meja</label>
+              <input type="number" class="form-control" id="reservasiMeja" placeholder="Berapa meja?" min="1" value="1">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Tanggal & Waktu</label>
+              <input type="datetime-local" class="form-control" id="reservasiWaktu">
+            </div>
+
+            <div class="d-grid">
+              <button class="btn btn-warning text-light py-3" onclick="reservasi()">Reservasi Sekarang</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid py-5 footer">
+      <div class="container">
+        <h5 class="text-center text-light mb-3">Temui Kami</h5>
+
+        <div class="d-flex justify-content-center mb-5" style="gap: 20px;">
+          <a href="https://facebook.com" target="_blank" class="social-icon">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" class="social-icon">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" class="social-icon">
+            <i class="bi bi-twitter-x"></i>
+          </a>
+          <a href="https://youtube.com" target="_blank" class="social-icon">
+            <i class="bi bi-youtube"></i>
+          </a>
+        </div>
+
+        <h5 class="text-center text-light mb-1">Subscribe</h5>
+        <p class="text-center text-light opacity-75 mb-3">untuk informasi tentang promo</p>
+
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="email" class="form-control" id="subscribeEmail" placeholder="Ketikkan Email">
+              <button class="btn btn-warning text-light" onclick="subscribe()">Subscribe</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-dark text-light py-4">
+      <div class="container">
+        <div class="row text-center text-md-start">
+          <div class="col-md-4 mb-3 mb-md-0">
+            <h5 class="fw-bold"></h5>
+            <p class="text-muted small">Tempat makan enak, nyaman, dan terjangkau untuk semua kalangan.</p>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <h6 class="fw-bold mb-3">Navigasi</h6>
+            <ul class="list-unstyled">
+              <li><a href="#" onclick="showPage('home'); return false;" class="text-muted text-decoration-none">Home</a></li>
+              <li><a href="#" onclick="showPage('produk'); return false;" class="text-muted text-decoration-none">Produk</a></li>
+              <li><a href="#" onclick="showPage('promo'); return false;" class="text-muted text-decoration-none">Promo</a></li>
+              <li><a href="#" onclick="showPage('keranjang'); return false;" class="text-muted text-decoration-none">Keranjang</a></li>
+            </ul>
+          </div>
+
+          <div class="col-md-4">
+            <h6 class="fw-bold mb-3">Kontak</h6>
+            <ul class="list-unstyled text-muted small">
+              <li class="mb-1"><i class="bi bi-geo-alt-fill me-2"></i>JL Gedeg.Kab sidoarjo</li>
+              <li class="mb-1"><i class="bi bi-telephone-fill me-2"></i>+62 812 3456 7890</li>
+              <li><i class="bi bi-envelope-fill me-2"></i>kafekamukannn@email.com</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="border-secondary mt-4 mb-3" />
+        <p class="text-center text-muted small mb-0">&copy; 2026 tahun perilisan umum website.</p>
+      </div>
+    </footer>
+
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="imageModalTitle">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <img id="modalImage" src="" class="img-fluid" alt="Menu">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACK TO TOP -->
+    <a href="#" onclick="scrollToTop(); return false;" class="btn btn-warning text-light rounded-circle p-3 position-fixed bottom-0 end-0 m-4" 
+       style="z-index: 99; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">
+      <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="bootstrap-5.0.0-dist/js/bootstrap.bundle.min.js"></script>
+    
+
+    <script>
+
+      const products = [
+        { id: 1, name: 'Nasi Goreng Spesial', category: 'makanan', price: 35000, image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&h=300&fit=crop', description: 'Nasi goreng dengan telur, ayam suwir, bakso, dan kerupuk' },
+        { id: 2, name: 'Mie Goreng Jawa', category: 'makanan', price: 32000, image: 'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&h=300&fit=crop', description: 'Mie goreng khas Jawa dengan sayuran dan telur' },
+        { id: 3, name: 'Ayam Bakar Taliwang', category: 'makanan', price: 45000, image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&h=300&fit=crop', description: 'Ayam bakar pedas khas Lombok' },
+        { id: 4, name: 'Steak Sirloin', category: 'makanan', price: 95000, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop', description: 'Steak sirloin dengan saus blackpepper' },
+        { id: 5, name: 'French Fries', category: 'makanan', price: 25000, image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&h=300&fit=crop', description: 'Kentang goreng renyah dengan saus sambal' },
+        { id: 6, name: 'Tofu Rice Bowl', category: 'makanan', price: 38000, image: 'https://images.unsplash.com/photo-1645177628172-a94c1f96e6db?w=400&h=300&fit=crop', description: 'Nasi dengan tahu goreng dan sayuran segar' },
+        { id: 7, name: 'Chicken Katsu', category: 'makanan', price: 42000, image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&h=300&fit=crop', description: 'Ayam goreng tepung khas Jepang' },
+        { id: 8, name: 'Sate Ayam', category: 'makanan', price: 35000, image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&h=300&fit=crop', description: 'Sate ayam dengan bumbu kacang' },
+        { id: 9, name: 'Rendang Daging', category: 'makanan', price: 55000, image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&h=300&fit=crop', description: 'Daging rendang khas Padang' },
+        { id: 10, name: 'Gado-gado', category: 'makanan', price: 28000, image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&h=300&fit=crop', description: 'Sayuran dengan bumbu kacang' },
+        { id: 11, name: 'Soto Ayam', category: 'makanan', price: 30000, image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&h=300&fit=crop', description: 'Soto ayam bening dengan tauge' },
+        { id: 12, name: 'Bakso Malang', category: 'makanan', price: 32000, image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&h=300&fit=crop', description: 'Bakso sapi dengan pangsit dan mie' },
+        { id: 13, name: 'Pempek Palembang', category: 'makanan', price: 35000, image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&h=300&fit=crop', description: 'Pempek dengan cuko' },
+        { id: 14, name: 'Nasi Uduk Komplit', category: 'makanan', price: 40000, image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&h=300&fit=crop', description: 'Nasi uduk dengan laengkap' },
+        { id: 15, name: 'Ikan Bakar Jimbaran', category: 'makanan', price: 75000, image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&h=300&fit=crop', description: 'Ikan bakar khas Bali' },
+        
+ 
+        { id: 16, name: 'Cappucino', category: 'minuman', price: 22000, image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&h=300&fit=crop', description: 'Kopi dengan buih susu' },
+        { id: 17, name: 'Matcha Latte', category: 'minuman', price: 25000, image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&h=300&fit=crop', description: 'Teh hijau dengan susu' },
+        { id: 18, name: 'Lemon Tea', category: 'minuman', price: 15000, image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&h=300&fit=crop', description: 'Teh dengan perasan lemon' },
+        { id: 19, name: 'Jus Alpukat', category: 'minuman', price: 20000, image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&h=300&fit=crop', description: 'Jus alpukat dengan susu coklat' },
+        { id: 20, name: 'Es Campur', category: 'minuman', price: 18000, image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&h=300&fit=crop', description: 'Es campur dengan berbagai buah' },
+        { id: 21, name: 'Milkshake Strawberry', category: 'minuman', price: 23000, image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&h=300&fit=crop', description: 'Milkshake rasa strawberry' },
+        
+        // Dessert (4 items)
+        { id: 22, name: 'Chocolate Mousse', category: 'dessert', price: 28000, image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=300&fit=crop', description: 'Mousse coklat lembut' },
+        { id: 23, name: 'Pancake Maple', category: 'dessert', price: 32000, image: 'https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=400&h=300&fit=crop', description: 'Pancake dengan sirup maple' },
+        { id: 24, name: 'Brownies', category: 'dessert', price: 25000, image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=300&fit=crop', description: 'Brownies coklat' },
+        { id: 25, name: 'Puding Caramel', category: 'dessert', price: 20000, image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=300&fit=crop', description: 'Puding dengan saus karamel' }
+      ];
+
+      // Data promo (dari produk yang ada)
+      const promos = products.filter(p => p.id <= 8).map(p => ({
+        id: p.id,
+        name: p.name,
+        originalPrice: p.price,
+        promoPrice: Math.round(p.price * 0.8), // Diskon 20%
+        discount: 20,
+        image: p.image
+      }));
+
+      // Data testimonial (10 review)
+      const testimonials = [
+        { id: 1, name: 'Panji Manusia Millenium', rating: 5, comment: 'Nasi gorengnya enak banget! Porsinya banyak dan bumbunya meresap. Suasana kafenya juga nyaman banget buat nongkrong.', food: 'Nasi Goreng Spesial' },
+        { id: 2, name: 'Saras 008', rating: 4.5, comment: 'Cappucinonya mantap, baristanya ramah. Sering dapat diskon juga, jadi makin hemat. Recommended banget!', food: 'Cappucino' },
+        { id: 3, name: 'Kapten Tsubasa', rating: 4, comment: 'Ayam bakarnya enak, sambalnya pedas nendang. Pelayanannya cepat dan karyawannya ramah.', food: 'Ayam Bakar Taliwang' },
+        { id: 4, name: 'Power Ranger Merah', rating: 5, comment: 'Delivery cepat banget! Makanan masih hangat sampai rumah. Packingnya juga rapi.', food: 'Steak Sirloin' },
+        { id: 5, name: 'Satria Baja Hitam', rating: 4.5, comment: 'Tempatnya bersih, toiletnya juga bersih. Cocok buat makan keluarga. Harganya terjangkau.', food: 'French Fries' },
+        { id: 6, name: 'Ultraman Tiga', rating: 5, comment: 'Sate ayamnya enak, bumbu kacangnya kental. Porsinya banyak, worth it banget!', food: 'Sate Ayam' },
+        { id: 7, name: 'Gundala Putra Petir', rating: 4, comment: 'Chocolate mousenya lembut banget, manisnya pas. Cocok buat dessert.', food: 'Chocolate Mousse' },
+        { id: 8, name: 'Si Buta dari Goa Hantu', rating: 5, comment: 'Rendangnya empuk dan bumbunya meresap. Kayak rendang asli Padang!', food: 'Rendang Daging' },
+        { id: 9, name: 'Jaka Sembung', rating: 4.5, comment: 'Es campurnya segar, buahnya banyak. Pas buat cuaca panas gini.', food: 'Es Campur' },
+        { id: 10, name: 'Pitung', rating: 5, comment: 'Pelayanan excellent! Semua staff sangat membantu. Makanannya enak-enak semua.', food: 'Nasi Uduk Komplit' }
+      ];
+
+      // Keranjang belanja
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      // Pagination variables
+      let currentPage = 1;
+      const itemsPerPage = 9;
+
+      // Update active nav link
+      function updateActiveNav(page) {
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+        });
+        document.getElementById(`nav-${page}`).classList.add('active');
+      }
+
+      // Show page function
+      function showPage(pageName) {
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(page => {
+          page.classList.remove('active');
+        });
+        
+        // Show selected page
+        document.getElementById(`${pageName}-page`).classList.add('active');
+        
+        // Update active nav
+        updateActiveNav(pageName);
+        
+        // Load page content
+        if (pageName === 'home') {
+          loadHomeContent();
+        } else if (pageName === 'produk') {
+          currentPage = 1;
+          loadProducts();
+        } else if (pageName === 'promo') {
+          loadPromos();
+        } else if (pageName === 'keranjang') {
+          loadCart();
+        }
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Load home content
+      function loadHomeContent() {
+        // Load promo home (4 items)
+        const promoHomeList = document.getElementById('promoHomeList');
+        promoHomeList.innerHTML = '';
+        
+        promos.slice(0, 4).forEach(promo => {
+          promoHomeList.innerHTML += `
+            <div class="col-sm-6 col-lg-3 hovered-card mb-3">
+              <div class="card position-relative">
+                <span class="badge-promo">Diskon ${promo.discount}%</span>
+                <img src="${promo.image}" class="card-img-top" alt="${promo.name}">
+                <div class="card-body">
+                  <h5 class="card-title">${promo.name}</h5>
+                  <p class="card-text">${products.find(p => p.name === promo.name)?.description || ''}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="text-muted text-decoration-line-through">Rp ${promo.originalPrice.toLocaleString()}</span>
+                    <span class="fw-bold text-warning">Rp ${promo.promoPrice.toLocaleString()}</span>
+                  </div>
+                  <button class="btn btn-sm btn-warning text-light mt-3 w-100" onclick="addToCart('${promo.name}', ${promo.promoPrice})">
+                    <i class="bi bi-cart-plus"></i> Tambah ke Keranjang
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        // Load favorite menu (4 items)
+        const favoriteMenuList = document.getElementById('favoriteMenuList');
+        favoriteMenuList.innerHTML = '';
+        
+        products.slice(0, 4).forEach(product => {
+          favoriteMenuList.innerHTML += `
+            <div class="col-sm-6 col-lg-3 mb-4">
+              <div class="card border-0 shadow-sm menu-card">
+                <img src="${product.image}" class="menu-card-img" alt="${product.name}"
+                     onclick="showImageModal('${product.image.replace('w=400', 'w=800')}', '${product.name}')">
+                <div class="card-body text-center">
+                  <h5 class="card-title fw-bold" style="color: #ffc107">${product.name}</h5>
+                  <p class="card-text text-muted small">${product.description.substring(0, 40)}...</p>
+                  <p class="fw-bold" style="color: #ffc107">Rp ${product.price.toLocaleString()}</p>
+                  <button class="btn btn-sm btn-warning text-light w-100" onclick="addToCart('${product.name}', ${product.price})">
+                    <i class="bi bi-cart-plus"></i> Tambah
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        // Load testimonials
+        loadTestimonials();
+      }
+
+      // Load testimonials
+      function loadTestimonials() {
+        const testimonialList = document.getElementById('testimonialList');
+        testimonialList.innerHTML = '';
+        
+        testimonials.forEach(testi => {
+          const stars = [];
+          for (let i = 1; i <= 5; i++) {
+            if (i <= Math.floor(testi.rating)) {
+              stars.push('<i class="bi bi-star-fill"></i>');
+            } else if (i - 0.5 === testi.rating) {
+              stars.push('<i class="bi bi-star-half"></i>');
+            } else {
+              stars.push('<i class="bi bi-star"></i>');
+            }
+          }
+          
+          testimonialList.innerHTML += `
+            <div class="col-sm-6 col-lg-4">
+              <div class="testimony-card">
+                <div class="quote-icon">"</div>
+                <h5>${testi.food}</h5>
+                <div class="author">— ${testi.name}</div>
+                <div class="stars">
+                  ${stars.join('')}
+                </div>
+                <p>${testi.comment}</p>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      // Load products with pagination
+      function loadProducts() {
+        const productList = document.getElementById('productList');
+        productList.innerHTML = '';
+        
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const paginatedProducts = products.slice(start, end);
+        
+        paginatedProducts.forEach(product => {
+          productList.innerHTML += `
+            <div class="col-lg-4 col-md-6">
+              <div class="card border-0 shadow-sm menu-card">
+                <img src="${product.image}" class="menu-card-img" alt="${product.name}"
+                     onclick="showImageModal('${product.image.replace('w=400', 'w=800')}', '${product.name}')">
+                <div class="card-body">
+                  <h5 class="card-title fw-bold" style="color: #ffc107">${product.name}</h5>
+                  <p class="card-text text-muted small">${product.description}</p>
+                  <p class="fw-bold" style="color: #ffc107">Rp ${product.price.toLocaleString()}</p>
+                  <button class="btn btn-sm btn-warning text-light w-100" onclick="addToCart('${product.name}', ${product.price})">
+                    <i class="bi bi-cart-plus"></i> Tambah ke Keranjang
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+        
+        loadPagination();
+      }
+
+      // Load pagination
+      function loadPagination() {
+        const totalPages = Math.ceil(products.length / itemsPerPage);
+        const pagination = document.getElementById('productPagination');
+        pagination.innerHTML = '';
+        
+        // Previous button
+        pagination.innerHTML += `
+          <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+            <a class="page-link" href="#" onclick="${currentPage > 1 ? 'changePage(' + (currentPage - 1) + ')' : 'return false;'}">
+              <i class="bi bi-chevron-left"></i>
+            </a>
+          </li>
+        `;
+        
+        // Page numbers
+        for (let i = 1; i <= totalPages; i++) {
+          pagination.innerHTML += `
+            <li class="page-item ${currentPage === i ? 'active' : ''}">
+              <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
+            </li>
+          `;
+        }
+        
+        // Next button
+        pagination.innerHTML += `
+          <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+            <a class="page-link" href="#" onclick="${currentPage < totalPages ? 'changePage(' + (currentPage + 1) + ')' : 'return false;'}">
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </li>
+        `;
+      }
+
+      // Change page
+      function changePage(page) {
+        currentPage = page;
+        loadProducts();
+      }
+
+      // Filter products
+      function filterProducts() {
+        const category = document.getElementById('productCategory').value;
+        const filtered = category === 'all' ? products : products.filter(p => p.category === category);
+        displayFilteredProducts(filtered);
+      }
+
+      // Search products
+      function searchProducts() {
+        const searchTerm = document.getElementById('searchProduct').value.toLowerCase();
+        const filtered = products.filter(p => 
+          p.name.toLowerCase().includes(searchTerm) || 
+          p.description.toLowerCase().includes(searchTerm)
+        );
+        displayFilteredProducts(filtered);
+      }
+
+      // Display filtered products
+      function displayFilteredProducts(filteredProducts) {
+        const productList = document.getElementById('productList');
+        productList.innerHTML = '';
+        
+        if (filteredProducts.length === 0) {
+          productList.innerHTML = `
+            <div class="col-12 text-center py-5">
+              <i class="bi bi-emoji-frown" style="font-size: 4rem; color: #ccc;"></i>
+              <h4 class="mt-3">Menu tidak ditemukan</h4>
+              <p class="text-muted">Coba kata kunci lain</p>
+            </div>
+          `;
+          return;
+        }
+        
+        filteredProducts.forEach(product => {
+          productList.innerHTML += `
+            <div class="col-lg-4 col-md-6">
+              <div class="card border-0 shadow-sm menu-card">
+                <img src="${product.image}" class="menu-card-img" alt="${product.name}"
+                     onclick="showImageModal('${product.image.replace('w=400', 'w=800')}', '${product.name}')">
+                <div class="card-body">
+                  <h5 class="card-title fw-bold" style="color: #ffc107">${product.name}</h5>
+                  <p class="card-text text-muted small">${product.description}</p>
+                  <p class="fw-bold" style="color: #ffc107">Rp ${product.price.toLocaleString()}</p>
+                  <button class="btn btn-sm btn-warning text-light w-100" onclick="addToCart('${product.name}', ${product.price})">
+                    <i class="bi bi-cart-plus"></i> Tambah ke Keranjang
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      // Load promos
+      function loadPromos() {
+        const promoList = document.getElementById('promoList');
+        promoList.innerHTML = '';
+        
+        promos.forEach(promo => {
+          promoList.innerHTML += `
+            <div class="col-lg-4 col-md-6">
+              <div class="card border-0 shadow-sm position-relative">
+                <span class="badge-promo">Diskon ${promo.discount}%</span>
+                <img src="${promo.image}" class="card-img-top" alt="${promo.name}">
+                <div class="card-body">
+                  <h5 class="card-title">${promo.name}</h5>
+                  <p class="card-text">${products.find(p => p.name === promo.name)?.description || ''}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="text-muted text-decoration-line-through">Rp ${promo.originalPrice.toLocaleString()}</span>
+                    <span class="fw-bold text-warning">Rp ${promo.promoPrice.toLocaleString()}</span>
+                  </div>
+                  <button class="btn btn-sm btn-warning text-light mt-3 w-100" onclick="addToCart('${promo.name}', ${promo.promoPrice})">
+                    <i class="bi bi-cart-plus"></i> Tambah ke Keranjang
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      // Add to cart
+      function addToCart(name, price) {
+        const existingItem = cart.find(item => item.name === name);
+        
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({ name, price, quantity: 1 });
+        }
+        
+        updateCartCount();
+        saveCart();
+        
+        // Show success message
+        alert(`${name} berhasil ditambahkan ke keranjang!`);
+      }
+
+      // Update cart count
+      function updateCartCount() {
+        const count = cart.reduce((total, item) => total + item.quantity, 0);
+        document.getElementById('cart-count').textContent = count;
+      }
+
+      // Save cart to localStorage
+      function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(cart));
+      }
+
+      // Load cart
+      function loadCart() {
+        const cartItems = document.getElementById('cartItems');
+        cartItems.innerHTML = '';
+        
+        if (cart.length === 0) {
+          cartItems.innerHTML = `
+            <div class="text-center py-5">
+              <i class="bi bi-cart-x" style="font-size: 4rem; color: #ccc;"></i>
+              <h4 class="mt-3">Keranjang belanja kosong</h4>
+              <p class="text-muted">Yuk, tambahkan menu favorit kamu!</p>
+              <button class="btn btn-warning text-light" onclick="showPage('produk')">Lihat Produk</button>
+            </div>
+          `;
+          document.getElementById('cartTotal').textContent = 'Rp 0';
+          document.getElementById('cartTax').textContent = 'Rp 0';
+          document.getElementById('cartFinalTotal').textContent = 'Rp 0';
+          return;
+        }
+        
+        let total = 0;
+        
+        cart.forEach((item, index) => {
+          total += item.price * item.quantity;
+          cartItems.innerHTML += `
+            <div class="card mb-3 cart-item">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-md-4">
+                    <h5 class="mb-0">${item.name}</h5>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="d-flex align-items-center">
+                      <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, -1)">-</button>
+                      <input type="number" class="form-control cart-quantity mx-2" value="${item.quantity}" min="1" 
+                             onchange="updateQuantityInput(${index}, this.value)">
+                      <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, 1)">+</button>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <p class="fw-bold mb-0">Rp ${(item.price * item.quantity).toLocaleString()}</p>
+                  </div>
+                  <div class="col-md-2 text-end">
+                    <button class="btn btn-sm btn-danger" onclick="removeFromCart(${index})">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+        
+        const tax = Math.round(total * 0.11);
+        const finalTotal = total + tax;
+        
+        document.getElementById('cartTotal').textContent = `Rp ${total.toLocaleString()}`;
+        document.getElementById('cartTax').textContent = `Rp ${tax.toLocaleString()}`;
+        document.getElementById('cartFinalTotal').textContent = `Rp ${finalTotal.toLocaleString()}`;
+      }
+
+      // Update quantity
+      function updateQuantity(index, change) {
+        const newQuantity = cart[index].quantity + change;
+        if (newQuantity > 0) {
+          cart[index].quantity = newQuantity;
+          saveCart();
+          loadCart();
+          updateCartCount();
+        }
+      }
+
+      // Update quantity input
+      function updateQuantityInput(index, value) {
+        const newQuantity = parseInt(value);
+        if (newQuantity > 0) {
+          cart[index].quantity = newQuantity;
+          saveCart();
+          loadCart();
+          updateCartCount();
+        }
+      }
+
+      // Remove from cart
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        saveCart();
+        loadCart();
+        updateCartCount();
+      }
+
+      // Clear cart
+      function clearCart() {
+        if (confirm('Yakin ingin mengosongkan keranjang?')) {
+          cart = [];
+          saveCart();
+          loadCart();
+          updateCartCount();
+        }
+      }
+
+      // Checkout
+      function checkout() {
+        if (cart.length === 0) {
+          alert('Keranjang belanja masih kosong!');
+          return;
+        }
+        
+        alert('Terima kasih! Pesanan Anda sedang diproses.');
+        // Di sini bisa ditambahkan integrasi dengan payment gateway
+      }
+
+      // Search food
+      function searchFood() {
+        const category = document.getElementById('foodCategory').value;
+        if (category && category !== 'Pilih Makanan') {
+          showPage('produk');
+          setTimeout(() => {
+            document.getElementById('productCategory').value = 
+              category === 'western' || category === 'eastern' ? 'makanan' : 
+              category === 'indonesian' ? 'makanan' : 'all';
+            filterProducts();
+          }, 100);
+        }
+      }
+
+      // Show image modal
+      function showImageModal(src, title) {
+        document.getElementById('modalImage').src = src;
+        document.getElementById('imageModalTitle').textContent = title;
+        const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+        modal.show();
+      }
+
+      // Reservasi
+      function reservasi() {
+        const nama = document.getElementById('reservasiNama').value;
+        const kontak = document.getElementById('reservasiKontak').value;
+        const meja = document.getElementById('reservasiMeja').value;
+        const waktu = document.getElementById('reservasiWaktu').value;
+        
+        if (!nama || !kontak || !waktu) {
+          alert('Harap lengkapi semua field!');
+          return;
+        }
+        
+        alert(`Terima kasih ${nama}! Reservasi untuk ${meja} meja pada ${waktu} telah diterima.`);
+        
+        // Reset form
+        document.getElementById('reservasiNama').value = '';
+        document.getElementById('reservasiKontak').value = '';
+        document.getElementById('reservasiMeja').value = '1';
+        document.getElementById('reservasiWaktu').value = '';
+      }
+
+      // Subscribe
+      function subscribe() {
+        const email = document.getElementById('subscribeEmail').value;
+        if (!email) {
+          alert('Harap masukkan email!');
+          return;
+        }
+        alert(`Terima kasih! Email ${email} telah terdaftar untuk berlangganan promo.`);
+        document.getElementById('subscribeEmail').value = '';
+      }
+
+      // Scroll to top
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Initialize
+      document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+        
+        // Set default page
+        showPage('home');
+        
+        // Smooth scroll for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
+            if (href !== '#') {
+              document.querySelector(href).scrollIntoView({
+                behavior: 'smooth'
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
